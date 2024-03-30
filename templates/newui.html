@@ -1,0 +1,109 @@
+{% extends "home.html" %} {% block content %}
+
+<div class="container" style="margin-top: 110px">
+  <form
+    id="topicForm"
+    action="{% url 'run' %}"
+    class="flex flex-row justify-content-around"
+  >
+    <!-- Category Dropdown -->
+    <div class="mt-2">
+      <select class="form-control ml-3" id="categoryDropdown" name="category">
+        <option value="">--Select--</option>
+        <option value="Trending">Trending🔥 News</option>
+        <option value="Favourite">Favourite💙 Topics</option>
+        <option value="Search">Search🔍 Topic</option>
+      </select>
+    </div>
+    <div class="mt-2">
+      <!-- Topics Dropdown (Initially Hidden) -->
+      <select class="form-control ml-3" id="topicsDropdown" name="topic">
+        <option value="">Choose Topic</option>
+        <option value="WORLD">WORLD</option>
+        <option value="NATION">NATION</option>
+        <option value="BUSINESS">BUSINESS</option>
+        <option value="TECHNOLOGY">TECHNOLOGY</option>
+        <option value="SPORTS">SPORTS</option>
+        <option value="SCIENCE">SCIENCE</option>
+        <option value="HEALTH">HEALTH</option>
+        <!-- Add the rest of your topics here -->
+      </select>
+    </div>
+    <div class="mt-2">
+      <input
+        type="text"
+        class="form-control ml-3"
+        id="searchInput"
+        name="searchTopic"
+        placeholder="Or type your topic"
+      />
+    </div>
+    <div class="mt-2">
+      <!-- Number of News Slider -->
+      <label for="newsNumberSlider">News count:</label>
+      <input
+        type="range"
+        class="custom-range"
+        id="newsNumberSlider"
+        name="no"
+        min="5"
+        max="25"
+        value="5"
+      />
+      <span id="sliderValue">5</span>
+    </div>
+    <div class="mt-2">
+      <button type="submit" class="btn btn-primary rounded ml-3">Submit</button>
+    </div>
+  </form>
+</div>
+<section class="blog-area pb-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1>News Articles</h1>
+      {% for article in article_list %}
+
+      <div class="single-blog blog-style-two mt-5">
+        <h3 class="blog-title">{{ article.title }}</h3>
+        <div class="blog-image">
+          <a href="javascript:void(0)"
+            >
+            
+            <img
+              class="img-fluid img-thumbnail"
+              src="{{ article.image }}"
+              onerror="this.onerror=null;this.src='https://www.alamy.com/blog/wp-content/uploads/2016/11/E4G70X-1024x683.jpg';"
+              alt="Article img"
+          /></a>
+        </div>
+
+        <div class="blog-content">
+          {% if article.summary|length < 60 %}
+    <p class="text">{{ article.title }}</p>
+{% else %}
+    <p class="text">{{ article.summary }}</p>
+{% endif %}
+          
+          <div class="flex flex-row justify-content-around">
+            <span class="btn btn-dark ml-2">📅 {{article.created_at}}</span>
+            <span class="btn btn-outline-primary ml-3"
+              >🌐: {{ article.content}}</span
+            >
+            <span class="btn btn-warning ml-3"
+              >📢: {{ article.sentiment}}</span
+            >
+            <a class="btn btn-primary rounded ml-3" href="{{ article.url }}"
+              >READ MORE</a
+            >
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+</div>
+
+{%endblock%}

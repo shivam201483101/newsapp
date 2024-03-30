@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>News Aggregator</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Connecting Bootstrap CSS file -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+      /* internal custom css */
+      body {
+        background-color: white;
+        color: black;
+        font-size: 25px;
+      }
+      .newui {
+        text-decoration: none;
+      }
+      /* class selector for dark mode*/
+      .dark-mode {
+        background-color: black;
+        color: white;
+      }
+      .footer-one {
+        background-color: var(--light-2);
+      }
+      .footer-one .footer-logo {
+        margin-top: 30px;
+      }
+      .footer-one .footer-widget {
+        padding-top: 70px;
+        padding-bottom: 100px;
+      }
+
+      .logoflash {
+        color: rgb(242, 206, 4);
+        font-family: "Kanit", sans-serif;
+        font-weight: 800;
+        font-style: italic;
+      }
+      .logonews {
+        font-family: "Kanit", sans-serif;
+        font-weight: 800;
+        font-style: italic;
+      }
+      @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .footer-one .footer-widget {
+          padding-top: 40px;
+          padding-bottom: 70px;
+        }
+      }
+      @media (max-width: 767px) {
+        .footer-one .footer-widget {
+          padding-top: 20px;
+          padding-bottom: 50px;
+        }
+      }
+      .footer-one .footer-title {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 22px;
+        color: var(--black);
+        position: relative;
+      }
+      .footer-one .footer-app-store {
+        padding-top: 22px;
+      }
+      .footer-one .footer-app-store .download-title {
+        font-size: 15px;
+        display: block;
+        margin-bottom: 15px;
+        font-weight: 500;
+        color: var(--dark-1);
+      }
+      .footer-one .footer-app-store li {
+        display: inline-block;
+        margin-right: 8px;
+      }
+      .footer-one .footer-app-store li img {
+        max-width: 140px;
+      }
+      @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .footer-one .footer-app-store li {
+          margin-right: 6px;
+        }
+      }
+      .footer-one .footer-app-store li:last-child {
+        margin-right: 0;
+      }
+      @media (max-width: 767px) {
+        .footer-one .footer-app-store li {
+          width: 120px;
+          display: block;
+          margin-bottom: 10px;
+        }
+        .footer-one .footer-app-store li:last-child {
+          margin: 0;
+        }
+      }
+      @media only screen and (min-width: 576px) and (max-width: 767px) {
+        .footer-one .footer-app-store li {
+          width: auto;
+        }
+      }
+      .footer-one .footer-app-store li a {
+        -webkit-transition: all 0.2s ease-out 0s;
+        -moz-transition: all 0.2s ease-out 0s;
+        -ms-transition: all 0.2s ease-out 0s;
+        -o-transition: all 0.2s ease-out 0s;
+        transition: all 0.2s ease-out 0s;
+      }
+      .footer-one .footer-app-store li a:hover {
+        box-shadow: var(--shadow-4);
+        -webkit-transform: translateY(-4px);
+        -moz-transform: translateY(-4px);
+        -ms-transform: translateY(-4px);
+        -o-transform: translateY(-4px);
+        transform: translateY(-4px);
+      }
+      .footer-one .f-about {
+        margin-top: 30;
+      }
+      .footer-one .f-about .text {
+        margin-top: 20px;
+      }
+      @media only screen and (min-width: 1200px) and (max-width: 1399px),
+        only screen and (min-width: 1400px) {
+        .footer-one .f-about {
+          padding-right: 200px;
+        }
+      }
+      .footer-one .footer-link {
+        margin-top: 30px;
+      }
+      .footer-one .footer-link ul {
+        margin-top: 8px;
+      }
+      .footer-one .footer-link ul a {
+        font-size: 16px;
+        line-height: 24px;
+        color: var(--dark-3);
+        margin-top: 16px;
+        font-weight: 400;
+        -webkit-transition: all 0.3s ease-out 0s;
+        -moz-transition: all 0.3s ease-out 0s;
+        -ms-transition: all 0.3s ease-out 0s;
+        -o-transition: all 0.3s ease-out 0s;
+        transition: all 0.3s ease-out 0s;
+      }
+      @media (max-width: 767px) {
+        .footer-one .footer-link ul a {
+          margin-top: 12px;
+        }
+      }
+      .footer-one .footer-link ul a:hover {
+        color: var(--primary);
+      }
+      .footer-one .footer-contact {
+        margin-top: 30px;
+      }
+      .footer-one .footer-contact ul {
+        margin-top: 5px;
+      }
+      .footer-one .footer-contact ul li {
+        color: var(--dark-3);
+      }
+      .footer-one .footer-contact ul li {
+        font-size: 18px;
+        line-height: 24px;
+        color: var(--dark-3);
+        margin-top: 16px;
+        font-weight: 400;
+      }
+
+      .footer-one .footer-copyright {
+        border-top: 1px solid var(--gray-4);
+      }
+      .footer-one .copyright {
+        padding-bottom: 23px;
+        padding-top: 13px;
+      }
+      .footer-one .copyright .text {
+        color: var(--dark-3);
+        margin-top: 10px;
+      }
+      .footer-one .social {
+        margin-top: 10px;
+      }
+      .footer-one .social li {
+        display: inline-block;
+        margin-right: 15px;
+      }
+      .footer-one .social li:last-child {
+        margin-right: 0;
+      }
+      .footer-one .social li a {
+        font-size: 18px;
+        color: var(--dark-3);
+        -webkit-transition: all 0.3s ease-out 0s;
+        -moz-transition: all 0.3s ease-out 0s;
+        -ms-transition: all 0.3s ease-out 0s;
+        -o-transition: all 0.3s ease-out 0s;
+        transition: all 0.3s ease-out 0s;
+      }
+      .footer-one .social li a:hover {
+        color: var(--primary);
+      }
+    </style>
+  </head>
+
+  <body>
+    {% load social_share %}
+    <div>
+      <div class="jumbotron">
+        <nav
+          class="navbar navbar-expand-lg fixed-top"
+          style="background-color: #6f42c1"
+        >
+          <a class="navbar-brand" href="{% url 'home' %}">
+            <div class="d-flex flex-row">
+              <div><h3 class="logoflash">⚡ Flash</h3></div>
+              <div><h3 class="logonews text-light">&nbsp;News</h3></div>
+            </div></a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item active">
+                <a class="nav-link text-light" href="{% url 'home' %}">Home </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="{% url 'about' %}"
+                  >About</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="{% url 'contact' %}"
+                  >Contact</a
+                >
+              </li>
+
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle text-light"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Categories
+                </a>
+                <div
+                  class="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'scrape' name='latest' %}"
+                    >Latest</a
+                  >
+                  <!-- url - 127.0.0.1:8000/scrape/latest -->
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'scrape' name='entertainment' %}"
+                    >Entertainment</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'scrape' name='sports' %}"
+                    >Sports</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'scrape' name='politics' %}"
+                    >Politics</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'scrape' name='opinion' %}"
+                    >Opinion</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'scrape' name='breaking-news' %}"
+                    >Breaking News</a
+                  >
+                </div>
+              </li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <div class="form-check form-switch text-light">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="darkModeSwitch"
+                  />
+                  <label class="form-check-label" for="darkModeSwitch"
+                    >Dark mode</label
+                  >
+                </div>
+              </li>
+              <li
+                class="nav-item"
+                style="margin-left: 20px; margin-right: 20px"
+              >
+                <button type="button" class="btn btn-info">
+                  <a class="text-light newui" href="{% url 'newui'%}">New UI</a>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      {% block content %}
+      <!-- This block will be overridden by child templates -->
+      {% endblock %}
+
+      <div class="row p-2" style="margin-top: 80px">
+        <!-- 
+          Django Template Language
+          DTL help us to create conditional statements or logical loops inside template 
+        -->
+        {% for record in object_list %}
+        <!-- the following code will be repeated based on how many values are available in object_list -->
+        <div class="col-12 col-md-4 col-lg-3">
+          <div class="card mb-4">
+            <img class="card-img-top" src="{{ record.image }}" />
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="{{ record.url }}"
+                  >{{ record.title|truncatechars:50 }}</a
+                >
+              </h5>
+            </div>
+            <div class="card-footer border-0">
+              <div class="d-flex justify-content-between flex-wrap">
+                <div class="mb-2">
+                  <!-- Copy Button -->
+                  <button
+                    class="btn btn-secondary btn-sm btn-block"
+                    onclick="copyToClipboard('{{ record.url }}')"
+                  >
+                    Copy
+                  </button>
+                </div>
+
+                <div class="mb-2">
+                  <!-- Facebook Button -->
+                  <button class="badge badge-primary text-dark p-1">
+                    {% post_to_facebook object_or_url " "%}<svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="0px"
+                      y="0px"
+                      width="30"
+                      height="30"
+                      viewBox="0 0 48 48"
+                    >
+                      <path
+                        fill="#3F51B5"
+                        d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"
+                      ></path>
+                      <path
+                        fill="#FFF"
+                        d="M34.368,25H31v13h-5V25h-3v-4h3v-2.41c0.002-3.508,1.459-5.59,5.592-5.59H35v4h-2.287C31.104,17,31,17.6,31,18.723V21h4L34.368,25z"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="mb-2">
+                  <!-- Whatsapp Button -->
+                  <button class="badge badge-primary text-black p-1">
+                    {% post_to_whatsapp object_or_url " " %}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="0px"
+                      y="0px"
+                      width="30"
+                      height="30"
+                      viewBox="0 0 48 48"
+                    >
+                      <path
+                        fill="#fff"
+                        d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"
+                      ></path>
+                      <path
+                        fill="#fff"
+                        d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"
+                      ></path>
+                      <path
+                        fill="#cfd8dc"
+                        d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"
+                      ></path>
+                      <path
+                        fill="#40c351"
+                        d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"
+                      ></path>
+                      <path
+                        fill="#fff"
+                        fill-rule="evenodd"
+                        d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="mb-2 border-0">
+                  <!-- Telegram Button -->
+                  <button class="badge badge-primary text-dark p-1">
+                    {% post_to_telegram "New News: " object_or_url " " %}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="0px"
+                      y="0px"
+                      width="30"
+                      height="30"
+                      viewBox="0 0 48 48"
+                    >
+                      <path
+                        fill="#29b6f6"
+                        d="M24 4A20 20 0 1 0 24 44A20 20 0 1 0 24 4Z"
+                      ></path>
+                      <path
+                        fill="#fff"
+                        d="M33.95,15l-3.746,19.126c0,0-0.161,0.874-1.245,0.874c-0.576,0-0.873-0.274-0.873-0.274l-8.114-6.733 l-3.97-2.001l-5.095-1.355c0,0-0.907-0.262-0.907-1.012c0-0.625,0.933-0.923,0.933-0.923l21.316-8.468 c-0.001-0.001,0.651-0.235,1.126-0.234C33.667,14,34,14.125,34,14.5C34,14.75,33.95,15,33.95,15z"
+                      ></path>
+                      <path
+                        fill="#b0bec5"
+                        d="M23,30.505l-3.426,3.374c0,0-0.149,0.115-0.348,0.12c-0.069,0.002-0.143-0.009-0.219-0.043 l0.964-5.965L23,30.505z"
+                      ></path>
+                      <path
+                        fill="#cfd8dc"
+                        d="M29.897,18.196c-0.169-0.22-0.481-0.26-0.701-0.093L16,26c0,0,2.106,5.892,2.427,6.912 c0.322,1.021,0.58,1.045,0.58,1.045l0.964-5.965l9.832-9.096C30.023,18.729,30.064,18.416,29.897,18.196z"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="mb-2">
+                  <!-- Report Button -->
+                  <button class="btn btn-danger btn-sm btn-block" onclick=" ">
+                    Report
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      {% include "footer.html" %}
+    </div>
+
+    {% comment %} Copy to Clipboard {% endcomment %}
+
+    <script>
+      $(document).ready(function () {
+        $("#newsNumberSlider").on("input change", function () {
+          $("#sliderValue").text($(this).val());
+        });
+      });
+    </script>
+
+    <script>
+      function copyToClipboard(text) {
+        var input = document.createElement("textarea"); //create text area
+        input.value = text; //url set as value to textarea
+        document.body.appendChild(input); //add text area to body
+        input.select(); //select textarea content
+        document.execCommand("copy");
+        document.body.removeChild(input);
+        alert("Copied to clipboard: " + text);
+      }
+
+      document
+        .getElementById("darkModeSwitch")
+        .addEventListener("change", function (event) {
+          document.body.classList.toggle("dark-mode"); // Toggle dark mode on the body
+
+          // Optional: Toggle additional classes for text and background colors
+          // Adapt this part as needed to fit your dark mode implementation
+          var foot = document.querySelectorAll(".footer-one");
+          foot.forEach((foots) =>
+            foots.classList.toggle("bg-dark", this.checked)
+          );
+          foot.forEach((foots) =>
+            foots.classList.toggle("text-light", this.checked)
+          );
+          var cards = document.querySelectorAll(".card");
+
+          cards.forEach((card) =>
+            card.classList.toggle("bg-white", this.checked)
+          );
+          cards.forEach((card) =>
+            card.classList.toggle("text-black", this.checked)
+          );
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
